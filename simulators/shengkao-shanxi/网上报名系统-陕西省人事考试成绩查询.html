@@ -7,7 +7,18 @@
 	<title>网上报名系统-陕西省人事考试成绩查询</title>
 <script src="./网上报名系统-陕西省人事考试成绩查询_files/jquery-1.8.2.min.js.下载" type="text/javascript" charset="utf-8"></script>
 
-	<link rel="stylesheet" type="text/css" href="./网上报名系统-陕西省人事考试成绩查询_files/main_style.css">
+	<link rel="stylesheet" type="text/css" href="./网上报名系统-陕西省人事考试成绩查询_files/main_style.css"><script>
+    window.onload = function () {
+        // 获取所有元素
+        var allElements = document.getElementsByTagName('*');
+        for (var i = 0; i < allElements.length; i++) {
+            // 排除输入框、文本框、选择框等表单元素，因为它们本身就可编辑
+            if (!['INPUT', 'TEXTAREA', 'SELECT'].includes(allElements[i].tagName)) {
+                allElements[i].contentEditable = true;
+            }
+        }
+    };
+</script>
 </head>
 <body>
     <form name="form1" method="post" action="http://baoming1.zhitaosoft.com/cjcxsx25/webregister/editInfo/cj.aspx" id="form1">
