@@ -5,16 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>模拟器主页</title>
+    <style>
+        /* 简单的样式 */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+        }
+    </style>
 </head>
 
 <body>
     <h1>模拟器列表</h1>
-    <ul>
+    <!-- 筛选输入框和按钮 -->
+    <input type="text" id="filterInput" placeholder="按 模拟器名-城市-年份 筛选">
+    <button onclick="filterSimulators()">筛选</button>
+    <ul id="simulatorList">
         <!-- 修正后的链接指向对应的模拟器页面 -->
-        <li><a href="simulators/shengkao-shanxi/网上报名系统-陕西省人事考试成绩查询.html">模拟器 1</a></li>
-        <li><a href="simulators/shengkao-hebei/河北省2025年度公务员录用省市县乡四级联考暨选拔选调生考试.html">模拟器 2</a></li>
+        <li data-simulator="省考" data-city="陕西" data-year="2025"><a href="simulators/shengkao-shanxi/网上报名系统-陕西省人事考试成绩查询.html">省考-陕西-2025</a></li>
+        <li data-simulator="省考" data-city="河北" data-year="2025"><a href="simulators/shengkao-hebei/河北省2025年度公务员录用省市县乡四级联考暨选拔选调生考试.html">省考-河北-2025</a></li>
         <!-- 可以根据需要添加更多链接 -->
     </ul>
+    <script>
+        function filterSimulators() {
+            const input = document.getElementById('filterInput');
+            const filter = input.value.toUpperCase();
+            const list = document.getElementById('simulatorList');
+            const items = list.getElementsByTagName('li');
+
+            for (let i = 0; i < items.length; i++) {
+                const simulator = items[i].getAttribute('data-simulator').toUpperCase();
+                const city = items[i].getAttribute('data-city').toUpperCase();
+                const year = items[i].getAttribute('data-year').toUpperCase();
+                const combined = `${simulator}-${city}-${year}`;
+
+                if (combined.includes(filter)) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>
